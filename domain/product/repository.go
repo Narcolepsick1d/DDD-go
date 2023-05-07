@@ -1,0 +1,19 @@
+package product
+
+import (
+	"errors"
+	"github.com/google/uuid"
+)
+
+var (
+	ErrProductNotFound = errors.New("No product found")
+	ErrProductExists   = errors.New("Product already exists")
+)
+
+type Repository interface {
+	GetAll() ([]Product, error)
+	GetByID(id uuid.UUID) (Product, error)
+	Add(product Product) error
+	Update(product Product) error
+	Delete(id uuid.UUID) error
+}
